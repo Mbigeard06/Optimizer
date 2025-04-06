@@ -1,6 +1,6 @@
 import numpy as np
 
-def optimize_momentum(func, grad_func, dim=2, max_iter=500, alpha=0.01, beta=0.9):
+def optimize_momentum(func, grad_func, dim=2, max_iter=5000, alpha=0.01, beta=0.9):
     """
     Momentum-based gradient descent optimizer.
 
@@ -22,10 +22,13 @@ def optimize_momentum(func, grad_func, dim=2, max_iter=500, alpha=0.01, beta=0.9
 
     for i in range(max_iter):
         # TODO: Compute gradient
+        grad = grad_func(x)
         # TODO: Update momentum vector
+        v = beta * v - alpha * grad
         # TODO: Update x using momentum
+        x = x + v
         # TODO: Log x to history
-        pass
+        history.append(x.copy())
 
     return x, history
 
@@ -55,3 +58,4 @@ def optimize_exploration(func, dim=2, max_iter=500, exploration_scale=0.1):
         pass
 
     return x, history
+    
